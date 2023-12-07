@@ -6,8 +6,13 @@ const router = express.Router();
 router.get("/code-verify", (req, res) => {
   const params = req.query;
   console.log("Http Parameters :", params);
-  const response = ["hello world", params];
-  res.status(200).send(response);
+  if (params.input === "123456") {
+    const response = ["verify", params];
+    res.status(200).send(response);
+  } else {
+    const response = ["fail", params];
+    res.status(400).send(response);
+  }
 });
 
 app.use("/app", router);
